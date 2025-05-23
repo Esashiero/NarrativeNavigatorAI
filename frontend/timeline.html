@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.socket.io;
+        connect-src 'self' ws://127.0.0.1:5000 http://127.0.0.1:5000;
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data:;
+        font-src 'self' data:;
+    ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline - Narrative Navigator AI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .timeline-container {
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .timeline-event {
+            background-color: #3e4451;
+            border-left: 3px solid #61afef;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .timeline-event .date {
+            color: #c678dd;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .timeline-event .name {
+            color: #a6e22e;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .timeline-event .description {
+            color: #abb2bf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Timeline</h1>
+        <div id="timelineDisplay" class="timeline-container">
+            <!-- Timeline events will be rendered here -->
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="timeline-renderer.js"></script>
+</body>
+</html> 

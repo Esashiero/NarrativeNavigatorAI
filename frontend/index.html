@@ -2,7 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:; connect-src 'self' ws://127.0.0.1:5000 http://127.0.0.1:5000;">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.socket.io;
+        connect-src 'self' ws://127.0.0.1:5000 http://127.0.0.1:5000;
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data:;
+        font-src 'self' data:;
+    ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Narrative Navigator AI</title>
     <link rel="stylesheet" href="style.css">
@@ -13,6 +20,9 @@
         <div class="controls">
             <button id="toggleButton" class="off">Turn On</button>
             <span id="statusText">Idle</span>
+            <input type="text" id="videoTitleInput" placeholder="Enter Video Title/URL (Optional)">
+            <button id="setVideoTitleBtn">Set Title</button>
+            <button id="openTimelineBtn" class="timeline-btn">Open Timeline</button>
         </div>
 
         <div class="content-area">
@@ -23,10 +33,39 @@
                 </div>
             </div>
 
+            <div class="llm-interactive-section">
+                <div class="llm-monitor-panel">
+                    <h2>LLM Communication</h2>
+                    <div id="llmMonitorDisplay" class="llm-monitor-display">
+                        <!-- LLM prompts and responses will appear here -->
+                    </div>
+                </div>
+
+                <div class="llm-chat-panel">
+                    <h2>Ask AI</h2>
+                    <div id="chatDisplay" class="chat-display"></div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Ask a question about the video...">
+                        <button id="chatSendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+            
             <div class="cheat-sheet-panel">
                 <h2>Cheat Sheet</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Character">Characters</button>
+                    <button class="filter-btn" data-filter="Location">Locations</button>
+                    <button class="filter-btn" data-filter="Organization">Organizations</button>
+                    <button class="filter-btn" data-filter="Key Object">Key Objects</button>
+                    <button class="filter-btn" data-filter="Concept">Concepts</button>
+                    <button class="filter-btn" data-filter="Event">Events</button>
+                </div>
                 <div id="cheatSheetDisplay" class="cheat-sheet-display">
-                    <!-- Cheat sheet entries will appear here -->
+                    <p id="emptyCheatSheetMessage" style="text-align: center; color: #7b8394; margin-top: 20px;">
+                        No entities identified yet. Play a video and click "Turn On".
+                    </p>
                 </div>
             </div>
         </div>
