@@ -13,16 +13,8 @@ yarn-debug.log*
 dist/ # Compiled Electron app output (if you build it)
 build/ # Build artifacts
 
-# macOS specific (if you ever work on Mac)
-.DS_Store
-
 # Windows specific
 Thumbs.db
 desktop.ini
 
-# Ollama Models (DO NOT UPLOAD!)
-# Ollama models are usually stored in the user's home directory under .ollama
-# They are downloaded locally, not part of the source code.
-# We explicitly note this here to avoid confusion.
-# The app code (app.py) downloads models dynamically.
-.ollama # If you happen to have a local .ollama folder in your project, ignore it.
+needed_software
