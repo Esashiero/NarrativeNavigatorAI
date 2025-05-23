@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:; connect-src 'self' ws://127.0.0.1:5000 http://127.0.0.1:5000;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narrative Navigator AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Narrative Navigator AI</h1>
+        <div class="controls">
+            <button id="toggleButton" class="off">Turn On</button>
+            <span id="statusText">Idle</span>
+        </div>
+
+        <div class="content-area">
+            <div class="transcript-panel">
+                <h2>Live Transcript</h2>
+                <div id="transcriptDisplay" class="transcript-display">
+                    <!-- Transcripts will appear here -->
+                </div>
+            </div>
+
+            <div class="cheat-sheet-panel">
+                <h2>Cheat Sheet</h2>
+                <div id="cheatSheetDisplay" class="cheat-sheet-display">
+                    <!-- Cheat sheet entries will appear here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="logs">
+            <h3>Logs</h3>
+            <pre id="logDisplay"></pre>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script> 
+    <script src="renderer.js"></script>
+</body>
+</html>
